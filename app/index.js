@@ -10,13 +10,14 @@ module.exports = app => {
   //app.on("issues.opened", postWelcome);
   //app.on("issues.opened", assignReviewers);
   app.on("issues.opened", async (context) => {
-    if (context.payload.issue.title.includes("[Virtual Event]")) {
+    if (context.payload.issue.title.includes("[Virtual Event]") || context.payload.issue.title.includes("[In-Person Event]")) {
       postWelcome(context);
-      //assignReviewers(context);
+    // Our newest goal is to get this working again
+    //assignReviewers(context);
     }
   });
   app.on("issues.assigned", async (context) => {
-    if (context.payload.issue.title.includes("[Virtual Event]")) {
+    if (context.payload.issue.title.includes("[Virtual Event]") || context.payload.issue.title.includes("[In-Person Event]")) {
       postChecklist(context);
     }
   });
